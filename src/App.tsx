@@ -1,16 +1,13 @@
 import "./App.css";
-import Box from "@mui/material/Box";
-import { Button, Typography } from "@mui/material";
+import { Drawer } from "@mui/material";
+import NavBar from "./components/NavBar/NavBar.tsx";
 
 function App() {
   return (
     <>
-      <Box sx={{ width: "100%", maxWidth: 800 }}>
-        <Typography variant="h1" gutterBottom>
-          Game Hub Website
-        </Typography>
-        <Button variant="outlined">Click ME!</Button>
-      </Box>
+      <NavBar />
+      <Drawer></Drawer>
+      <div className="main"></div>
     </>
   );
 }
