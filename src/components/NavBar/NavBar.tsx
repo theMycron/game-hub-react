@@ -2,23 +2,17 @@ import {
   AppBar,
   Container,
   FormControl,
-  FormControlLabel,
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Switch,
   Toolbar,
 } from "@mui/material";
 import logo from "../../assets/logo.webp";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
-import { ChangeEvent } from "react";
+import ColorSwitch from "./ColorSwitch.tsx";
 
-interface Props {
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-}
-
-function NavBar({ onChange }: Props) {
+function NavBar() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -36,12 +30,7 @@ function NavBar({ onChange }: Props) {
               }
             />
           </FormControl>
-          <Box sx={{ display: "flex" }}>
-            <FormControlLabel
-              control={<Switch onChange={onChange}></Switch>}
-              label={"Dark Mode"}
-            />
-          </Box>
+          <ColorSwitch />
         </Toolbar>
       </Container>
     </AppBar>

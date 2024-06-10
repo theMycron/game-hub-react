@@ -5,22 +5,16 @@ import { createTheme, Stack, ThemeProvider, Typography } from "@mui/material";
 import FilterBar from "./components/Main/FilterBar.tsx";
 import GameList from "./components/Main/GameList.tsx";
 import Box from "@mui/material/Box";
-import React, { ChangeEvent } from "react";
+import React from "react";
 
-const ColorModeContext = React.createContext({
+export const ColorModeContext = React.createContext({
   toggleColorMode: (mode: boolean) => {},
 });
 
 function App() {
-  const colorMode = React.useContext(ColorModeContext);
-
   return (
     <>
-      <NavBar
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          colorMode.toggleColorMode(event.target.checked)
-        }
-      />
+      <NavBar />
       <Stack direction={{ xs: "column", sm: "row" }}>
         <Box sx={{ minWidth: 240, maxWidth: 300 }}>
           <SideBar />
