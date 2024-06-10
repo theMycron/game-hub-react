@@ -1,44 +1,47 @@
 import {
   AppBar,
   Container,
+  FormControl,
   FormControlLabel,
   InputAdornment,
+  InputLabel,
+  OutlinedInput,
   Switch,
-  TextField,
   Toolbar,
 } from "@mui/material";
-import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
+import logo from "../../assets/logo.webp";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
+import { ChangeEvent } from "react";
 
-function NavBar() {
+interface Props {
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+function NavBar({ onChange }: Props) {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <VideogameAssetIcon sx={{ display: "flex", mr: 1, fontSize: 40 }} />
-          <Box sx={{ flexGrow: 2, display: "flex" }}>
-            <TextField
+          <Box component="img" sx={{ maxHeight: 72 }} src={logo} />
+          <FormControl sx={{ flexGrow: 2, display: "flex", mx: 3 }}>
+            <InputLabel htmlFor="search">Search</InputLabel>
+            <OutlinedInput
               id="search"
-              sx={{ m: 1 }}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
+              label="Search"
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+          <Box sx={{ display: "flex" }}>
+            <FormControlLabel
+              control={<Switch onChange={onChange}></Switch>}
+              label={"Dark Mode"}
             />
           </Box>
-          <Box sx={{ display: "flex" }}>
-            <FormControlLabel control={<Switch></Switch>} label={"Dark Mode"} />
-          </Box>
-
-          {/*<VideogameAssetIcon*/}
-          {/*  sx={{ display: { xs: "flex", md: "none" }, mr: 1, fontSize: 40 }}*/}
-          {/*/>*/}
-          {/*<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}></Box>*/}
         </Toolbar>
       </Container>
     </AppBar>

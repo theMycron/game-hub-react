@@ -1,15 +1,26 @@
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.tsx";
 import SideBar from "./components/SideBar/SideBar.tsx";
-import { Stack, Typography } from "@mui/material";
+import { createTheme, Stack, ThemeProvider, Typography } from "@mui/material";
 import FilterBar from "./components/Main/FilterBar.tsx";
 import GameList from "./components/Main/GameList.tsx";
 import Box from "@mui/material/Box";
+import React, { ChangeEvent } from "react";
+
+const ColorModeContext = React.createContext({
+  toggleColorMode: (mode: boolean) => {},
+});
 
 function App() {
+  const colorMode = React.useContext(ColorModeContext);
+
   return (
     <>
-      <NavBar />
+      <NavBar
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          colorMode.toggleColorMode(event.target.checked)
+        }
+      />
       <Stack direction={{ xs: "column", sm: "row" }}>
         <Box sx={{ minWidth: 240, maxWidth: 300 }}>
           <SideBar />
@@ -26,4 +37,32 @@ function App() {
   );
 }
 
-export default App;
+export default function ToggleColorMode() {
+  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: (mode: boolean) => {
+        setMode(() => (mode ? "dark" : "light"));
+      },
+    }),
+    [],
+  );
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+}
