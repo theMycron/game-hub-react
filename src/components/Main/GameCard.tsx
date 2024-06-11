@@ -9,6 +9,7 @@ import {
 import AndroidRoundedIcon from "@mui/icons-material/AndroidRounded";
 import Box from "@mui/material/Box";
 import { Game } from "../../hooks/useGames.ts";
+import PlatformIconList from "./PlatformIconList.tsx";
 
 interface Props {
   game: Game;
@@ -29,15 +30,9 @@ function GameCard({ game }: Props) {
         <CardMedia sx={{ height: 220 }} image={game.background_image} />
         <Box px={2}>
           <Stack direction="row" justifyContent="space-between" py={1}>
-            <Stack direction="row" spacing={0.5}>
-              <AndroidRoundedIcon />
-              <AndroidRoundedIcon />
-              <AndroidRoundedIcon />
-              <AndroidRoundedIcon />
-              <AndroidRoundedIcon />
-              <AndroidRoundedIcon />
-              <AndroidRoundedIcon />
-            </Stack>
+            <PlatformIconList
+              platforms={game.parent_platforms.map((p) => p.platform)}
+            />
             <Paper
               sx={{ paddingLeft: 1, paddingRight: 1, color: "text.secondary" }}
             >
