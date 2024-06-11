@@ -24,7 +24,7 @@ function GameList() {
       >
         {games.map((game) => (
           <Grid item xs={1} key={game.id}>
-            <GameCard title={game.name} score={game.rating} />
+            <GameCard game={game} />
           </Grid>
         ))}
       </Grid>
