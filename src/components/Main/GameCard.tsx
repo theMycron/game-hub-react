@@ -1,9 +1,10 @@
-import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import { CardMedia, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Game } from "../../hooks/useGames.ts";
 import PlatformIconList from "./PlatformIconList.tsx";
 import CriticScore from "./CriticScore.tsx";
 import getCroppedImageUrl from "../../services/image-url.ts";
+import GameCardContainer from "./GameCardContainer.tsx";
 
 interface Props {
   game: Game;
@@ -11,32 +12,22 @@ interface Props {
 
 function GameCard({ game }: Props) {
   return (
-    <Card
-      sx={{
-        minWidth: 275,
-        maxWidth: 375,
-        minHeight: 340,
-        borderRadius: 3,
-        margin: "auto",
-      }}
-    >
-      <CardContent sx={{ padding: 0 }}>
-        <CardMedia
-          sx={{ minHeight: 250 }}
-          image={getCroppedImageUrl(game.background_image)}
-        />
-        <Box px={2}>
-          <Stack direction="row" justifyContent="space-between" py={1}>
-            <PlatformIconList
-              platforms={game.parent_platforms.map((p) => p.platform)}
-            />
-            <CriticScore score={game.metacritic} />
-          </Stack>
-          <Typography variant="h5">{game.name}</Typography>
-          <Typography variant="h5">👍</Typography>
-        </Box>
-      </CardContent>
-    </Card>
+    <GameCardContainer>
+      <CardMedia
+        sx={{ minHeight: 250 }}
+        image={getCroppedImageUrl(game.background_image)}
+      />
+      <Box px={2}>
+        <Stack direction="row" justifyContent="space-between" py={1}>
+          <PlatformIconList
+            platforms={game.parent_platforms.map((p) => p.platform)}
+          />
+          <CriticScore score={game.metacritic} />
+        </Stack>
+        <Typography variant="h5">{game.name}</Typography>
+        <Typography variant="h5">👍</Typography>
+      </Box>
+    </GameCardContainer>
   );
 }
 
