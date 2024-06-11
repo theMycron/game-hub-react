@@ -37,6 +37,7 @@ function PlatformIconList({ platforms }: Props) {
         createElement(iconMap[platform.slug], {
           fontSize: "large",
           color: "grey",
+          key: platform.id,
         }),
       )}
     </Stack>
