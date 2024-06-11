@@ -10,6 +10,7 @@ import AndroidRoundedIcon from "@mui/icons-material/AndroidRounded";
 import Box from "@mui/material/Box";
 import { Game } from "../../hooks/useGames.ts";
 import PlatformIconList from "./PlatformIconList.tsx";
+import CriticScore from "./CriticScore.tsx";
 
 interface Props {
   game: Game;
@@ -33,11 +34,7 @@ function GameCard({ game }: Props) {
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
             />
-            <Paper
-              sx={{ paddingLeft: 1, paddingRight: 1, color: "text.secondary" }}
-            >
-              <Typography>{game.metacritic}</Typography>
-            </Paper>
+            <CriticScore score={game.metacritic} />
           </Stack>
           <Typography variant="h5">{game.name}</Typography>
           <Typography variant="h5">👍</Typography>

@@ -32,7 +32,7 @@ function PlatformIconList({ platforms }: Props) {
   };
 
   return (
-    <Stack direction="row" spacing={1} flex alignItems="center">
+    <Stack direction="row" spacing={1} alignItems="center">
       {platforms.map((platform) =>
         createElement(iconMap[platform.slug], {
           fontSize: "large",
