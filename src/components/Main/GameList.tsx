@@ -13,7 +13,7 @@ import GameCardSkeleton from "./GameCardSkeleton.tsx";
 // ];
 
 function GameList() {
-  const { games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useGames();
   return (
     <>
       {error && <Alert severity="error">{error}</Alert>}

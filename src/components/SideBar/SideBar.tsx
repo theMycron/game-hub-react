@@ -3,7 +3,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import useGenres from "../../hooks/useGenres.ts";
 
 function SideBar() {
-  const { genres } = useGenres();
+  const { data: genres } = useGenres();
 
   return (
     <Box>
