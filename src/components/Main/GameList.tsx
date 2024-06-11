@@ -1,7 +1,6 @@
-import { Alert, Grid, Typography } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import GameCard from "./GameCard.tsx";
-import { useEffect, useState } from "react";
-import apiClient from "../../services/api-client.ts";
+import useGames from "../../hooks/useGames.ts";
 
 // const gameList = [
 //   { title: "Hollow Knight", score: 93 },
@@ -12,28 +11,8 @@ import apiClient from "../../services/api-client.ts";
 //   { title: "A Difficult Game About Climbing With Long Ass Name", score: 60 },
 // ];
 
-interface Game {
-  id: number;
-  name: string;
-  rating: number;
-}
-
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
-
 function GameList() {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchGamesResponse>("/games")
-      .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err.message));
-  }, []);
-
+  const { games, error } = useGames();
   return (
     <>
       {error && <Alert severity="error">{error}</Alert>}
