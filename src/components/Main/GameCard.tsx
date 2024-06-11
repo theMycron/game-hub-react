@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
-import AndroidRoundedIcon from "@mui/icons-material/AndroidRounded";
+import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Game } from "../../hooks/useGames.ts";
 import PlatformIconList from "./PlatformIconList.tsx";

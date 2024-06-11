@@ -1,6 +1,7 @@
 import { Alert, Grid } from "@mui/material";
 import GameCard from "./GameCard.tsx";
 import useGames from "../../hooks/useGames.ts";
+import GameCardSkeleton from "./GameCardSkeleton.tsx";
 
 // const gameList = [
 //   { title: "Hollow Knight", score: 93 },
@@ -12,7 +13,7 @@ import useGames from "../../hooks/useGames.ts";
 // ];
 
 function GameList() {
-  const { games, error } = useGames();
+  const { games, error, isLoading } = useGames();
   return (
     <>
       {error && <Alert severity="error">{error}</Alert>}
@@ -22,6 +23,12 @@ function GameList() {
         spacing={3}
         columns={{ xs: 1, md: 2, lg: 3, xl: 4 }}
       >
+        {isLoading &&
+          Array.from(Array(8).keys()).map((_, i) => (
+            <Grid item xs={1} key={i}>
+              <GameCardSkeleton />
+            </Grid>
+          ))}
         {games.map((game) => (
           <Grid item xs={1} key={game.id}>
             <GameCard game={game} />

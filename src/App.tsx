@@ -19,7 +19,7 @@ function App() {
         <Box sx={{ minWidth: 240, maxWidth: 300 }}>
           <SideBar />
         </Box>
-        <Box padding={2} bgcolor={"cyan"} display="block">
+        <Box padding={2} display="block">
           <Typography variant="h2" fontWeight={"bold"}>
             Games
           </Typography>
