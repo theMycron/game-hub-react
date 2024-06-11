@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import { Game } from "../../hooks/useGames.ts";
 import PlatformIconList from "./PlatformIconList.tsx";
 import CriticScore from "./CriticScore.tsx";
+import getCroppedImageUrl from "../../services/image-url.ts";
 
 interface Props {
   game: Game;
@@ -28,7 +29,10 @@ function GameCard({ game }: Props) {
       }}
     >
       <CardContent sx={{ padding: 0 }}>
-        <CardMedia sx={{ height: 220 }} image={game.background_image} />
+        <CardMedia
+          sx={{ minHeight: 250 }}
+          image={getCroppedImageUrl(game.background_image)}
+        />
         <Box px={2}>
           <Stack direction="row" justifyContent="space-between" py={1}>
             <PlatformIconList
