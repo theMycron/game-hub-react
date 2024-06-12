@@ -33,12 +33,14 @@ function PlatformIconList({ platforms }: Props) {
 
   return (
     <Stack direction="row" spacing={1} alignItems="center">
-      {platforms.map((platform) =>
-        createElement(iconMap[platform.slug], {
-          fontSize: "large",
-          color: "grey",
-          key: platform.id,
-        }),
+      {platforms.map(
+        (platform) =>
+          Object.prototype.hasOwnProperty.call(iconMap, platform.slug) &&
+          createElement(iconMap[platform.slug], {
+            fontSize: "large",
+            color: "grey",
+            key: platform.id,
+          }),
       )}
     </Stack>
   );
