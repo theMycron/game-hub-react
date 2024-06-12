@@ -3,6 +3,7 @@ import GameCard from "./GameCard.tsx";
 import useGames from "../../hooks/useGames.ts";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import { Genre } from "../../hooks/useGenres.ts";
+import { Platform } from "../../hooks/usePlatforms.ts";
 
 // const gameList = [
 //   { title: "Hollow Knight", score: 93 },
@@ -15,10 +16,15 @@ import { Genre } from "../../hooks/useGenres.ts";
 
 interface Props {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 }
 
-function GameList({ selectedGenre }: Props) {
-  const { data: games, error, isLoading } = useGames(selectedGenre);
+function GameList({ selectedGenre, selectedPlatform }: Props) {
+  const {
+    data: games,
+    error,
+    isLoading,
+  } = useGames(selectedGenre, selectedPlatform);
   return (
     <>
       {error && <Alert severity="error">{error}</Alert>}

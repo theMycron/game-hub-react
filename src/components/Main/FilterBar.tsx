@@ -7,14 +7,16 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useState } from "react";
+import PlatformSelector from "./PlatformSelector.tsx";
+import { Platform } from "../../hooks/usePlatforms.ts";
 
-function FilterBar() {
-  const [platformFilter, setPlatformFilter] = useState("");
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | string;
+}
+
+function FilterBar({ onSelectPlatform, selectedPlatform }: Props) {
   const [sortOption, setSortOption] = useState("");
-
-  const handleChangePlatform = (event: SelectChangeEvent) => {
-    setPlatformFilter(event.target.value);
-  };
 
   const handleChangeSort = (event: SelectChangeEvent) => {
     setSortOption(event.target.value);
@@ -22,20 +24,10 @@ function FilterBar() {
 
   return (
     <Box>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <InputLabel id="select-platform-label">Platforms</InputLabel>
-        <Select
-          id="select-platform"
-          labelId="select-platform-label"
-          value={platformFilter}
-          label="Platforms"
-          onChange={handleChangePlatform}
-        >
-          <MenuItem value={"PC"}>PC</MenuItem>
-          <MenuItem value={"PS5"}>PS5</MenuItem>
-          <MenuItem value={"Switch"}>Switch</MenuItem>
-        </Select>
-      </FormControl>
+      <PlatformSelector
+        onSelectPlatform={onSelectPlatform}
+        selectedPlatform={selectedPlatform}
+      />
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="select-order-label">Order by</InputLabel>
         <Select

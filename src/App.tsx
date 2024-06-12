@@ -7,6 +7,7 @@ import GameList from "./components/Main/GameList.tsx";
 import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import { Genre } from "./hooks/useGenres.ts";
+import { Platform } from "./hooks/usePlatforms.ts";
 
 export const ColorModeContext = React.createContext({
   toggleColorMode: (mode: boolean) => {},
@@ -14,9 +15,16 @@ export const ColorModeContext = React.createContext({
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null,
+  );
 
   const handleGenreFilter = (genre: Genre) => {
     setSelectedGenre(genre);
+  };
+
+  const handlePlatformFilter = (platform: Platform) => {
+    setSelectedPlatform(platform);
   };
 
   return (
@@ -33,8 +41,14 @@ function App() {
           <Typography variant="h2" fontWeight={"bold"}>
             Games
           </Typography>
-          <FilterBar />
-          <GameList selectedGenre={selectedGenre} />
+          <FilterBar
+            onSelectPlatform={handlePlatformFilter}
+            selectedPlatform={selectedPlatform ? selectedPlatform : ""}
+          />
+          <GameList
+            selectedGenre={selectedGenre}
+            selectedPlatform={selectedPlatform}
+          />
         </Box>
       </Stack>
     </>
