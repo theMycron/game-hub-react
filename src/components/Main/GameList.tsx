@@ -2,6 +2,7 @@ import { Alert, Grid } from "@mui/material";
 import GameCard from "./GameCard.tsx";
 import useGames from "../../hooks/useGames.ts";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
+import { Genre } from "../../hooks/useGenres.ts";
 
 // const gameList = [
 //   { title: "Hollow Knight", score: 93 },
@@ -12,8 +13,12 @@ import GameCardSkeleton from "./GameCardSkeleton.tsx";
 //   { title: "A Difficult Game About Climbing With Long Ass Name", score: 60 },
 // ];
 
-function GameList() {
-  const { data: games, error, isLoading } = useGames();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+function GameList({ selectedGenre }: Props) {
+  const { data: games, error, isLoading } = useGames(selectedGenre);
   return (
     <>
       {error && <Alert severity="error">{error}</Alert>}

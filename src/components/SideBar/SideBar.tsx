@@ -10,9 +10,13 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import useGenres from "../../hooks/useGenres.ts";
+import useGenres, { Genre } from "../../hooks/useGenres.ts";
 
-function SideBar() {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+function SideBar({ onSelectGenre }: Props) {
   const { data: genres, isLoading } = useGenres();
 
   return (
@@ -25,7 +29,7 @@ function SideBar() {
         <List>
           {genres.map((genre) => (
             <ListItem key={genre.id} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => onSelectGenre(genre)}>
                 <ListItemAvatar>
                   <Avatar
                     variant="rounded"
