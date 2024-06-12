@@ -19,7 +19,7 @@ function CriticScore({ score }: Props) {
         color: textColor,
       }}
     >
-      <Typography>{score}</Typography>
+      <Typography>{score ? score : "N/A"}</Typography>
     </Paper>
   );
 }
