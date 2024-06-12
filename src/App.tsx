@@ -16,7 +16,7 @@ function App() {
     <>
       <NavBar />
       <Stack direction={{ xs: "column", sm: "row" }}>
-        <Box sx={{ minWidth: 240, maxWidth: 300 }}>
+        <Box sx={{ minWidth: 280, maxWidth: 300 }}>
           <SideBar />
         </Box>
         <Box padding={2} display="block">
