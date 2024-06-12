@@ -24,7 +24,10 @@ function App() {
       <NavBar />
       <Stack direction={{ xs: "column", sm: "row" }}>
         <Box sx={{ minWidth: 280, maxWidth: 300 }}>
-          <SideBar onSelectGenre={handleGenreFilter} />
+          <SideBar
+            onSelectGenre={handleGenreFilter}
+            selectedGenre={selectedGenre}
+          />
         </Box>
         <Box padding={2} display="block">
           <Typography variant="h2" fontWeight={"bold"}>

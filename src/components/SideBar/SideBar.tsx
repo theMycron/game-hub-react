@@ -14,9 +14,10 @@ import useGenres, { Genre } from "../../hooks/useGenres.ts";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-function SideBar({ onSelectGenre }: Props) {
+function SideBar({ onSelectGenre, selectedGenre }: Props) {
   const { data: genres, isLoading } = useGenres();
 
   return (
@@ -29,7 +30,12 @@ function SideBar({ onSelectGenre }: Props) {
         <List>
           {genres.map((genre) => (
             <ListItem key={genre.id} disablePadding>
-              <ListItemButton onClick={() => onSelectGenre(genre)}>
+              <ListItemButton
+                selected={genre.id === selectedGenre?.id}
+                onClick={() => {
+                  onSelectGenre(genre);
+                }}
+              >
                 <ListItemAvatar>
                   <Avatar
                     variant="rounded"
