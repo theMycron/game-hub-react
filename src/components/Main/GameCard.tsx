@@ -5,6 +5,7 @@ import PlatformIconList from "./PlatformIconList.tsx";
 import CriticScore from "./CriticScore.tsx";
 import getCroppedImageUrl from "../../services/image-url.ts";
 import GameCardContainer from "./GameCardContainer.tsx";
+import Emoji from "./Emoji.tsx";
 
 interface Props {
   game: Game;
@@ -24,8 +25,10 @@ function GameCard({ game }: Props) {
           />
           <CriticScore score={game.metacritic} />
         </Stack>
-        <Typography variant="h5">{game.name}</Typography>
-        <Typography variant="h5">👍</Typography>
+        <Typography variant="h5" gutterBottom>
+          {game.name}
+        </Typography>
+        <Emoji rating={game.rating_top} />
       </Box>
     </GameCardContainer>
   );
