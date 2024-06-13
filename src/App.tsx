@@ -23,6 +23,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -40,9 +41,13 @@ function App() {
     setGameQuery({ ...gameQuery, sortOrder });
   };
 
+  const handleSearch = (value: string) => {
+    setGameQuery({ ...gameQuery, searchText: value });
+  };
+
   return (
     <>
-      <NavBar />
+      <NavBar onSearch={handleSearch} />
       <Stack direction={{ xs: "column", sm: "row" }}>
         <Box sx={{ minWidth: 280, maxWidth: 300 }}>
           <SideBar
