@@ -1,13 +1,14 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import usePlatforms, { Platform } from "../../hooks/usePlatforms.ts";
+import usePlatforms from "../../hooks/usePlatforms.ts";
+import { useState } from "react";
 
 interface Props {
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | string | null;
+  onSelectPlatform: (platformId: number) => void;
 }
 
-function PlatformSelector({ onSelectPlatform, selectedPlatform = "" }: Props) {
+function PlatformSelector({ onSelectPlatform }: Props) {
   const { data: platforms } = usePlatforms();
+  const [selectedPlatform, setSelectedPlatform] = useState<string>("");
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -15,16 +16,16 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform = "" }: Props) {
       <Select
         id="select-platform"
         labelId="select-platform-label"
-        value={selectedPlatform}
         label="Platforms"
+        value={selectedPlatform}
         onChange={(event) => {
-          onSelectPlatform(event.target.value as Platform);
+          setSelectedPlatform(event.target.value);
+          onSelectPlatform(parseInt(event.target.value));
         }}
       >
         <MenuItem value="">All</MenuItem>
-        {platforms.map((platform: Platform) => (
-          //@ts-expect-error The value prop needs to be an object but typescript doesn't want it to be
-          <MenuItem key={platform.id} value={platform}>
+        {platforms.map((platform) => (
+          <MenuItem key={platform.id} value={platform.id}>
             {platform.name}
           </MenuItem>
         ))}

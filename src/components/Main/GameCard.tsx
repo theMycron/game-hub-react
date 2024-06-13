@@ -21,7 +21,7 @@ function GameCard({ game }: Props) {
       <Box px={2}>
         <Stack direction="row" justifyContent="space-between" py={1}>
           <PlatformIconList
-            platforms={game.parent_platforms.map((p) => p.platform)}
+            platforms={game?.parent_platforms?.map((p) => p.platform)}
           />
           <CriticScore score={game.metacritic} />
         </Stack>

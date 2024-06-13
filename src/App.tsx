@@ -12,8 +12,6 @@ import FilterBar from "./components/Main/FilterBar.tsx";
 import GameList from "./components/Main/GameList.tsx";
 import Box from "@mui/material/Box";
 import React, { useState } from "react";
-import { Genre } from "./hooks/useGenres.ts";
-import { Platform } from "./hooks/usePlatforms.ts";
 import GameHeading from "./components/Main/GameHeading.tsx";
 import { getDesignTokens } from "./components/theme.ts";
 
@@ -24,8 +22,8 @@ export const ColorModeContext = React.createContext<{
 });
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId: number;
+  platformId: number;
   sortOrder: string;
   searchText: string;
 }
@@ -33,12 +31,12 @@ export interface GameQuery {
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
-  const handleGenreFilter = (genre: Genre) => {
-    setGameQuery({ ...gameQuery, genre });
+  const handleGenreFilter = (genreId: number) => {
+    setGameQuery({ ...gameQuery, genreId });
   };
 
-  const handlePlatformFilter = (platform: Platform) => {
-    setGameQuery({ ...gameQuery, platform });
+  const handlePlatformFilter = (platformId: number) => {
+    setGameQuery({ ...gameQuery, platformId });
   };
 
   const handleSortOrder = (sortOrder: string) => {
@@ -60,16 +58,12 @@ function App() {
             display: { xs: "none", sm: "block" },
           }}
         >
-          <SideBar
-            onSelectGenre={handleGenreFilter}
-            selectedGenre={gameQuery.genre}
-          />
+          <SideBar onSelectGenre={handleGenreFilter} />
         </Box>
         <Box padding={2} display="block">
           <GameHeading gameQuery={gameQuery} />
           <FilterBar
             onSelectPlatform={handlePlatformFilter}
-            selectedPlatform={gameQuery.platform}
             onSelectSortOrder={handleSortOrder}
             selectedSortOrder={gameQuery.sortOrder}
           />

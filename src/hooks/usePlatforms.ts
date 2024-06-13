@@ -1,4 +1,4 @@
-import platforms from "../data/platforms.ts";
+import { platformsData } from "../data/platforms.ts";
 
 export interface Platform {
   id: number;
@@ -7,7 +7,7 @@ export interface Platform {
 }
 
 const usePlatforms = () => {
-  return { data: platforms.results, isLoading: false, error: null };
+  return { data: platformsData.results, isLoading: false, error: null };
 };
 
 export default usePlatforms;

@@ -1,18 +1,15 @@
 import Box from "@mui/material/Box";
 import PlatformSelector from "./PlatformSelector.tsx";
-import { Platform } from "../../hooks/usePlatforms.ts";
 import SortSelector from "./SortSelector.tsx";
 
 interface Props {
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | string | null;
+  onSelectPlatform: (platformId: number) => void;
   onSelectSortOrder: (sortOrder: string) => void;
   selectedSortOrder: string;
 }
 
 function FilterBar({
   onSelectPlatform,
-  selectedPlatform,
   onSelectSortOrder,
   selectedSortOrder,
 }: Props) {
@@ -22,10 +19,7 @@ function FilterBar({
 
   return (
     <Box>
-      <PlatformSelector
-        onSelectPlatform={onSelectPlatform}
-        selectedPlatform={selectedPlatform}
-      />
+      <PlatformSelector onSelectPlatform={onSelectPlatform} />
       <SortSelector
         selectedOption={selectedSortOrder}
         onSelectOption={(option) => handleChangeSort(option)}

@@ -15,7 +15,7 @@ import { IconType } from "react-icons";
 import { createElement } from "react";
 
 interface Props {
-  platforms: Platform[];
+  platforms?: Platform[];
 }
 
 function PlatformIconList({ platforms }: Props) {
@@ -33,7 +33,7 @@ function PlatformIconList({ platforms }: Props) {
 
   return (
     <Stack direction="row" spacing={1} alignItems="center">
-      {platforms.map(
+      {platforms?.map(
         (platform) =>
           Object.prototype.hasOwnProperty.call(iconMap, platform.slug) &&
           createElement(iconMap[platform.slug], {

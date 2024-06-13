@@ -10,15 +10,17 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import useGenres, { Genre } from "../../hooks/useGenres.ts";
+import useGenres from "../../hooks/useGenres.ts";
+import { useState } from "react";
 
 interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  onSelectGenre: (genreId: number) => void;
 }
 
-function SideBar({ onSelectGenre, selectedGenre }: Props) {
+function SideBar({ onSelectGenre }: Props) {
   const { data: genres, isLoading } = useGenres();
+
+  const [selectedGenre, setSelectedGenre] = useState<number>();
 
   return (
     <Box>
@@ -31,9 +33,10 @@ function SideBar({ onSelectGenre, selectedGenre }: Props) {
           {genres.map((genre) => (
             <ListItem key={genre.id} disablePadding>
               <ListItemButton
-                selected={genre.id === selectedGenre?.id}
+                selected={genre.id === selectedGenre}
                 onClick={() => {
-                  onSelectGenre(genre);
+                  setSelectedGenre(genre.id);
+                  onSelectGenre(genre.id);
                 }}
               >
                 <ListItemAvatar>

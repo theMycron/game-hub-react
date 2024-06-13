@@ -1,4 +1,4 @@
-export default {
+export const platformsData = {
   count: 14,
   next: null,
   previous: null,
