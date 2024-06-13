@@ -2,8 +2,7 @@ import { Alert, Grid } from "@mui/material";
 import GameCard from "./GameCard.tsx";
 import useGames from "../../hooks/useGames.ts";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
-import { Genre } from "../../hooks/useGenres.ts";
-import { Platform } from "../../hooks/usePlatforms.ts";
+import { GameQuery } from "../../App.tsx";
 
 // const gameList = [
 //   { title: "Hollow Knight", score: 93 },
@@ -15,16 +14,11 @@ import { Platform } from "../../hooks/usePlatforms.ts";
 // ];
 
 interface Props {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
 
-function GameList({ selectedGenre, selectedPlatform }: Props) {
-  const {
-    data: games,
-    error,
-    isLoading,
-  } = useGames(selectedGenre, selectedPlatform);
+function GameList({ gameQuery }: Props) {
+  const { data: games, error, isLoading } = useGames(gameQuery);
   return (
     <>
       {error && <Alert severity="error">{error}</Alert>}

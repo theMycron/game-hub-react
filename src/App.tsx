@@ -13,18 +13,20 @@ export const ColorModeContext = React.createContext({
   toggleColorMode: (mode: boolean) => {},
 });
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null,
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   const handleGenreFilter = (genre: Genre) => {
-    setSelectedGenre(genre);
+    setGameQuery({ ...gameQuery, genre });
   };
 
   const handlePlatformFilter = (platform: Platform) => {
-    setSelectedPlatform(platform);
+    setGameQuery({ ...gameQuery, platform });
   };
 
   return (
@@ -34,7 +36,7 @@ function App() {
         <Box sx={{ minWidth: 280, maxWidth: 300 }}>
           <SideBar
             onSelectGenre={handleGenreFilter}
-            selectedGenre={selectedGenre}
+            selectedGenre={gameQuery.genre}
           />
         </Box>
         <Box padding={2} display="block">
@@ -43,12 +45,9 @@ function App() {
           </Typography>
           <FilterBar
             onSelectPlatform={handlePlatformFilter}
-            selectedPlatform={selectedPlatform ? selectedPlatform : ""}
+            selectedPlatform={gameQuery.platform ? gameQuery.platform : ""}
           />
-          <GameList
-            selectedGenre={selectedGenre}
-            selectedPlatform={selectedPlatform}
-          />
+          <GameList gameQuery={gameQuery} />
         </Box>
       </Stack>
     </>
