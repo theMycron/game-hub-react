@@ -10,6 +10,7 @@ function ColorSwitch() {
       <FormControlLabel
         control={
           <Switch
+            defaultChecked
             onChange={(event) =>
               colorMode.toggleColorMode(event.target.checked)
             }
