@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import { Genre } from "./hooks/useGenres.ts";
 import { Platform } from "./hooks/usePlatforms.ts";
+import GameHeading from "./components/Main/GameHeading.tsx";
 
 export const ColorModeContext = React.createContext({
   toggleColorMode: (mode: boolean) => {},
@@ -56,9 +57,7 @@ function App() {
           />
         </Box>
         <Box padding={2} display="block">
-          <Typography variant="h2" fontWeight={"bold"}>
-            Games
-          </Typography>
+          <GameHeading gameQuery={gameQuery} />
           <FilterBar
             onSelectPlatform={handlePlatformFilter}
             selectedPlatform={gameQuery.platform}
