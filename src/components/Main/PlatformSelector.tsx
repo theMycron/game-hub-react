@@ -6,7 +6,7 @@ interface Props {
   selectedPlatform: Platform | string;
 }
 
-function PlatformSelector({ onSelectPlatform, selectedPlatform }: Props) {
+function PlatformSelector({ onSelectPlatform, selectedPlatform = "" }: Props) {
   const { data: platforms } = usePlatforms();
 
   return (

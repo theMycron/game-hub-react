@@ -16,6 +16,7 @@ export const ColorModeContext = React.createContext({
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sortOrder: string;
 }
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
 
   const handlePlatformFilter = (platform: Platform) => {
     setGameQuery({ ...gameQuery, platform });
+  };
+
+  const handleSortOrder = (sortOrder: string) => {
+    setGameQuery({ ...gameQuery, sortOrder });
   };
 
   return (
@@ -45,7 +50,9 @@ function App() {
           </Typography>
           <FilterBar
             onSelectPlatform={handlePlatformFilter}
-            selectedPlatform={gameQuery.platform ? gameQuery.platform : ""}
+            selectedPlatform={gameQuery.platform}
+            onSelectSortOrder={handleSortOrder}
+            selectedSortOrder={gameQuery.sortOrder}
           />
           <GameList gameQuery={gameQuery} />
         </Box>
