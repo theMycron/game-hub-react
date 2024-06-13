@@ -1,7 +1,13 @@
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.tsx";
 import SideBar from "./components/SideBar/SideBar.tsx";
-import { createTheme, CssBaseline, Stack, ThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  CssBaseline,
+  PaletteMode,
+  Stack,
+  ThemeProvider,
+} from "@mui/material";
 import FilterBar from "./components/Main/FilterBar.tsx";
 import GameList from "./components/Main/GameList.tsx";
 import Box from "@mui/material/Box";
@@ -9,6 +15,7 @@ import React, { useState } from "react";
 import { Genre } from "./hooks/useGenres.ts";
 import { Platform } from "./hooks/usePlatforms.ts";
 import GameHeading from "./components/Main/GameHeading.tsx";
+import { getDesignTokens } from "./components/theme.ts";
 
 export const ColorModeContext = React.createContext({
   toggleColorMode: (mode: boolean) => {},
@@ -66,7 +73,7 @@ function App() {
 }
 
 export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const [mode, setMode] = React.useState<PaletteMode>("light");
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: (mode: boolean) => {
@@ -76,15 +83,7 @@ export default function ToggleColorMode() {
     [],
   );
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
-  );
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
