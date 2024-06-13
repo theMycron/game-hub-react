@@ -1,4 +1,4 @@
-import { Platform } from "../../hooks/useGames.ts";
+import { Platform } from "../../hooks/usePlatforms.ts";
 import { Stack } from "@mui/material";
 import {
   FaWindows,

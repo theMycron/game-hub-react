@@ -18,12 +18,12 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform = "" }: Props) {
         value={selectedPlatform}
         label="Platforms"
         onChange={(event) => {
-          console.log(event.target.value);
           onSelectPlatform(event.target.value as Platform);
         }}
       >
         <MenuItem value="">All</MenuItem>
         {platforms.map((platform: Platform) => (
+          //@ts-expect-error The value prop needs to be an object but typescript doesn't want it to be
           <MenuItem key={platform.id} value={platform}>
             {platform.name}
           </MenuItem>

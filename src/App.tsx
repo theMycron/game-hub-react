@@ -17,8 +17,10 @@ import { Platform } from "./hooks/usePlatforms.ts";
 import GameHeading from "./components/Main/GameHeading.tsx";
 import { getDesignTokens } from "./components/theme.ts";
 
-export const ColorModeContext = React.createContext({
-  toggleColorMode: (mode: boolean) => {},
+export const ColorModeContext = React.createContext<{
+  toggleColorMode: (mode: boolean) => void;
+}>({
+  toggleColorMode: () => {},
 });
 
 export interface GameQuery {
