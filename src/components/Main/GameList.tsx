@@ -19,9 +19,10 @@ interface Props {
 
 function GameList({ gameQuery }: Props) {
   const { data: games, error, isLoading } = useGames(gameQuery);
+
+  if (error) return <Alert severity="error">{error}</Alert>;
   return (
     <>
-      {error && <Alert severity="error">{error}</Alert>}
       <Grid
         py={2}
         container
