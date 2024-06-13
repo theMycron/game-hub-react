@@ -5,7 +5,7 @@ import SortSelector from "./SortSelector.tsx";
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | string;
+  selectedPlatform: Platform | string | null;
   onSelectSortOrder: (sortOrder: string) => void;
   selectedSortOrder: string;
 }

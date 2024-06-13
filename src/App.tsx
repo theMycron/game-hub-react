@@ -1,13 +1,7 @@
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.tsx";
 import SideBar from "./components/SideBar/SideBar.tsx";
-import {
-  createTheme,
-  CssBaseline,
-  Stack,
-  ThemeProvider,
-  Typography,
-} from "@mui/material";
+import { createTheme, CssBaseline, Stack, ThemeProvider } from "@mui/material";
 import FilterBar from "./components/Main/FilterBar.tsx";
 import GameList from "./components/Main/GameList.tsx";
 import Box from "@mui/material/Box";
