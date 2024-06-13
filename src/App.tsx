@@ -52,8 +52,14 @@ function App() {
   return (
     <>
       <NavBar onSearch={handleSearch} />
-      <Stack direction={{ xs: "column", sm: "row" }}>
-        <Box sx={{ minWidth: 280, maxWidth: 300 }}>
+      <Stack direction={"row"}>
+        <Box
+          sx={{
+            minWidth: 280,
+            maxWidth: 300,
+            display: { xs: "none", sm: "block" },
+          }}
+        >
           <SideBar
             onSelectGenre={handleGenreFilter}
             selectedGenre={gameQuery.genre}
